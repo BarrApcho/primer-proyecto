@@ -31,7 +31,3 @@ elif isinstance(i, str):
     i+=1
 print(i)
 
-a='hello'
-list(a)
-set(a)
-tuple(a)
