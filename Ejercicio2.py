@@ -1,38 +1,51 @@
-Python 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)] on win32
-Enter "help" below or click "Help" above for more information.
->>> print('hola mundo')
-hola mundo
-#integer
-a=2
-print(a)
-#output: 2
+# Lee los elementos de dos listas y los fusiona en una nueva
 
-#interger
-b=9223372036854775807
-print(b)
-#output:92223372036854775807
+def leer_elementos(mensaje, cantidad):
+    numeros = []
+    for i in range(cantidad):
+        numero = leer_int(f"{mensaje}[{i}]: ", 1, 100)
+        numeros.append(numero)
+    return numeros
 
-#floating print
-pi=3.14
-print(pi)
-#output:3.14
 
-#string
-c='A'
-print(c)
-#output:A
+def fusionar(numeros1, numeros2):
+    tope = len(numeros1) + len(numeros2)
+    unidos = []
+    j = 0
 
-#string
-name='john Doe'
-print(name)
-#output:john Doe
+    for i in range(tope):
+        if i < len(numeros1):
+            unidos.append(numeros1[i])
+        else:
+            unidos.append(numeros2[j])
+            j += 1
 
-#Boolean
-q=true
-print(q)
-#Output:true
+    return unidos
 
-#empty value or null data type
-x=None
-print(x)
-#output:None
+
+def imprimir_elementos(mensaje, numeros):
+    print(f"\n{mensaje}")
+    for i in range(len(numeros)):
+        print(numeros[i], end=" ")
+
+
+def leer_int(mensaje, minimo, maximo):
+    siga = True
+    while siga:
+        numero = int(input(mensaje))
+        if numero >= minimo and numero <= maximo:
+            siga = False
+        else:
+            print(f"\n¡Error! El dato debe estar entre {minimo} y {maximo}\n")
+    return numero
+
+
+cantidad = leer_int("\nDigite la cantidad de elementos primera lista: ", 1, 50)
+numeros1 = leer_elementos("Lista 1 ", cantidad)
+
+cantidad = leer_int("\nDigite la cantidad de elementos segunda lista: ", 1, 50)
+numeros2 = leer_elementos("Lista 2 ", cantidad)
+
+unidos = fusionar(numeros1, numeros2)
+
+imprimir_elementos("La lista fusionada es:", unidos)
